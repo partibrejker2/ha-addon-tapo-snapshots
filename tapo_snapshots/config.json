@@ -28,5 +28,6 @@
   "ports": {},
   "map": ["config:rw", "ssl", "media:rw"],
   "full_access": false,
-  "host_network": true
+  "host_network": true,
+  "build": "."
 }
