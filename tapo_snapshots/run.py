@@ -9,8 +9,9 @@ from pydrive2.drive import GoogleDrive
 CONFIG_PATH = "/data/options.json"
 SERVICE_ACCOUNT_PATH = "/data/service_account.json"
 INTERVAL_SECONDS = 3600
-START_HOUR = 6
-END_HOUR = 22
+INTERVAL_SECONDS = options.get("interval_seconds", 3600)
+START_HOUR = 5
+END_HOUR = 23
 
 # Load config
 with open(CONFIG_PATH, "r") as f:
