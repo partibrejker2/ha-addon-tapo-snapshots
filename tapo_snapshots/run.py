@@ -7,15 +7,14 @@ from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 
 CONFIG_PATH = "/data/options.json"
+# Load config
+with open(CONFIG_PATH, "r") as f:
+    options = json.load(f)
 SERVICE_ACCOUNT_PATH = "/data/service_account.json"
-INTERVAL_SECONDS = 3600
 INTERVAL_SECONDS = options.get("interval_seconds", 3600)
 START_HOUR = 5
 END_HOUR = 23
 
-# Load config
-with open(CONFIG_PATH, "r") as f:
-    options = json.load(f)
 cameras = options.get("cameras", [])
 
 service_account_json = options.get("service_account", "")
