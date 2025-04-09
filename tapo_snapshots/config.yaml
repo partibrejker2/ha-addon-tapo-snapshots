@@ -1,5 +1,5 @@
 name: "Tapo Snapshot Uploader"
-version: "1.0.0"
+version: "1.0.1"
 slug: "tapo_snapshots"
 description: "Takes snapshots from Tapo (or compatible) cameras and uploads them to Google Drive."
 arch:
@@ -16,12 +16,14 @@ options:
       ip: "192.168.1.100"
       user: "tapoadmin"
       pass: "yourpassword"
+  service_account: ""
 schema:
   cameras:
     - name: "str"
       ip: "str"
       user: "str"
       pass: "str"
+  service_account: "str"
 ports: {}
 map:
   - "config:rw"

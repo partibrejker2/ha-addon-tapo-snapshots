@@ -17,6 +17,14 @@ with open(CONFIG_PATH, "r") as f:
     options = json.load(f)
 cameras = options.get("cameras", [])
 
+service_account_json = options.get("service_account", "")
+if not service_account_json:
+    print("❌ Missing service account data")
+    exit(1)
+
+with open("/data/service_account.json", "w") as f:
+    f.write(service_account_json)
+    
 # Check for credentials
 if not os.path.exists(SERVICE_ACCOUNT_PATH):
     print("❌ Missing service_account.json in /data/")
