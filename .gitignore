@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+settings.yaml
+*.log
+service_account.json

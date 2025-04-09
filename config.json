@@ -1,0 +1,32 @@
+{
+  "name": "Tapo Snapshot Uploader",
+  "version": "1.0.0",
+  "slug": "tapo_snapshots",
+  "description": "Takes snapshots from Tapo (or compatible) cameras and uploads them to Google Drive.",
+  "startup": "application",
+  "boot": "auto",
+  "options": {
+    "cameras": [
+      {
+        "name": "Front_yard",
+        "ip": "192.168.1.100",
+        "user": "tapoadmin",
+        "pass": "yourpassword"
+      }
+    ]
+  },
+  "schema": {
+    "cameras": [
+      {
+        "name": "str",
+        "ip": "str",
+        "user": "str",
+        "pass": "str"
+      }
+    ]
+  },
+  "ports": {},
+  "map": ["config:rw", "ssl", "media:rw"],
+  "full_access": false,
+  "host_network": true
+}
