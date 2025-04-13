@@ -1,5 +1,5 @@
 name: "Tapo Snapshot Uploader"
-version: "1.0.3"
+version: "1.0.4"
 slug: "tapo_snapshots"
 description: "Takes snapshots from Tapo (or compatible) cameras and uploads them to Google Drive."
 arch:
@@ -18,6 +18,8 @@ options:
       pass: "yourpassword"
   service_account: ""
   interval_seconds: 3600
+  start_hour: 0
+  end_hour: 24
 schema:
   cameras:
     - name: "str"
@@ -26,6 +28,8 @@ schema:
       pass: "str"
   service_account: "str"
   interval_seconds: int
+  start_hour: int
+  end_hour: int
 ports: {}
 map:
   - "config:rw"

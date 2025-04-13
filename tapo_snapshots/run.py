@@ -12,9 +12,8 @@ with open(CONFIG_PATH, "r") as f:
     options = json.load(f)
 SERVICE_ACCOUNT_PATH = "/data/service_account.json"
 INTERVAL_SECONDS = options.get("interval_seconds", 3600)
-START_HOUR = 5
-END_HOUR = 23
-
+START_HOUR = options.get("start_hour", 0)
+END_HOUR = options.get("end_hour", 24)
 cameras = options.get("cameras", [])
 
 service_account_json = options.get("service_account", "")
