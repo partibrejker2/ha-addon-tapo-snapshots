@@ -74,7 +74,7 @@ try:
 
                 try:
                     cap = cv2.VideoCapture(rtsp)
-                    time.sleep(0.5)
+                    time.sleep(2)
                     for _ in range(3):
                         cap.read()
                     ret, frame = cap.read()
