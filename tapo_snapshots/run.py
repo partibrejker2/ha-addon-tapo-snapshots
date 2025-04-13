@@ -99,7 +99,12 @@ try:
 
             if all_success:
                 print("✅ All camera snapshots uploaded successfully")
+            elif not all_success:
+                print("⚠️ Snapshot round completed with some errors.")
+        else:
+            print(f"⏰ Skipped – outside capture window ({START_HOUR}:00–{END_HOUR}:00)")
 
+        print(f"⏳ Sleeping for {INTERVAL_SECONDS} seconds...\n")
         time.sleep(INTERVAL_SECONDS)
 
 except KeyboardInterrupt:

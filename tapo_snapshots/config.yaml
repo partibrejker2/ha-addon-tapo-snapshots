@@ -1,5 +1,5 @@
 name: "Tapo Snapshot Uploader"
-version: "1.0.5"
+version: "1.0.6"
 slug: "tapo_snapshots"
 description: "Takes snapshots from Tapo (or compatible) cameras and uploads them to Google Drive."
 arch:
