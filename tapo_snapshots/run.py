@@ -56,6 +56,17 @@ def get_or_create_folder(name, parent_id=None):
     folder.Upload()
     return folder['id']
 
+MAX_RETRIES = 3
+
+def is_valid_frame(frame):
+    if frame is None:
+        return False
+    if frame.shape[0] < 100 or frame.shape[1] < 100:
+        return False
+    if cv2.countNonZero(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)) < 1000:
+        return False
+    return True
+    
 root_folder = get_or_create_folder("TapoSnapshots")
 cam_folders = {cam['name']: get_or_create_folder(cam['name'], root_folder) for cam in cameras}
 
@@ -76,12 +87,21 @@ try:
                     cap = cv2.VideoCapture(rtsp)
                     time.sleep(2)
                     for _ in range(3):
-                        cap.read()
+                        cap.read()  # Flush bad frames
+
                     ret, frame = cap.read()
+                    retries = 0
+
+                    while (not ret or not is_valid_frame(frame)) and retries < MAX_RETRIES:
+                        print(f"⚠️ Bad frame detected from {name}, retrying ({retries+1})...")
+                        time.sleep(1)
+                        ret, frame = cap.read()
+                        retries += 1
+
                     cap.release()
 
-                    if not ret:
-                        raise Exception("Failed to grab frame")
+                    if not ret or not is_valid_frame(frame):
+                        raise Exception("Failed to grab a valid frame after retries")
 
                     cv2.imwrite(filepath, frame)
                     gfile = drive.CreateFile({
